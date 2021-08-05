@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title> Cart</title>
+</head>
+<body>
+        
+        <table>
+            <tr>
+                <td id="chips">chips</td>
+                <td><input type="text"></td>
+                <td><button id="add1">add</button></td>
+            </tr>
+            <tr>
+                <td id="kurkure">kurkure</td>
+                <td><input type="text" id="quantity1"></td>
+                <td><button id="add2">add</button></td>
+            </tr>
+            <tr>
+                <td id="nacho-chips">nacho-chips</td>
+                <td><input type="text"></td>
+                <td><button id="add3">add</button></td>
+            </tr>
+            <tr>
+                <td id="biscuit">biscuit</td>
+                <td><input type="text"></td>
+                <td><button id="add4">add</button></td>
+            </tr>
+            <tr>
+               <td></td>
+                <td><button id="process">Checkout</button></td>
+                <td><button id="cancel">Cancel Order</button></td>
+            </tr>
+        </table>
+        <script>
+            $(document).ready(function(){
+                $("#add1").click(function(){
+                    var q1=$("#quantity1").val();
+                    var name=$("#chips").text();
+                    var prod_data={
+                        itemname:name,
+                        quantity:q1
+                    }
+                    $.ajax({
+                   type:"POST",
+                   url:"/api/orderitems",
+                   data:prod_data,
+                   success:function(result){
+                        console.log("Item added")
+                    }
+
+               })
+            })       
+            
+            
+            })
+        </script>
+</body>
+</html>
